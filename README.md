@@ -166,6 +166,14 @@ The project integrates data extraction, exploratory analysis, predictive modelin
 
 The findings and visualizations can support inventory planning, supplier evaluation, warehouse analysis, and data-driven managerial decisions.
 
+### Dataset
+
+The original supply chain dataset used in this project is available in the data folder.
+
+- [Original Dataset (CSV)](data/supply_chain_dataset1.csv)
+- [Data Dictionary](data/data_dictionary.md)
+
+  
 Repository Structure
 
 Supply-Chain-Inventory-Analytics/
