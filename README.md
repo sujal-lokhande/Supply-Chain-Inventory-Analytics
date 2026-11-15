@@ -133,53 +133,40 @@ These SQL analytical queries support regional inventory evaluation, supplier lea
 
 5. R Modeling Insights & Validation
 
-R and RStudio were used for Exploratory Data Analysis (EDA), data preprocessing, visualization, predictive modeling, and model evaluation.
+R was used to perform Exploratory Data Analysis (EDA) and build a predictive regression model for inventory analysis.
 
-5.1 Exploratory Data Analysis
+Model Evaluation Results
 
-The analysis included:
+Evaluation Metric| Value
+R-squared (R²)| 0.00464
+RMSE| 133.1772
 
-- Summary statistics to understand the dataset.
-- Missing value analysis.
-- Duplicate record identification.
-- Feature correlation analysis.
-- Outlier analysis.
-- Data visualization using ggplot2.
+Interpretation of Model Results
 
-5.2 EDA Visualizations
+R-squared (0.00464):
 
-The following visualizations were generated:
+The R-squared value of 0.00464 indicates that the model explains approximately 0.464% of the variation in inventory levels. This suggests that the model has very limited explanatory power.
 
-- Feature Correlation Heatmap
-- Inventory Outliers Boxplot
-- Demand Forecast vs Inventory Scatter Plot
+Root Mean Squared Error (RMSE = 133.1772):
 
-These plots help identify relationships between variables, potential outliers, and patterns in inventory data.
+The RMSE value of 133.1772 indicates that the model's prediction errors have a typical magnitude of approximately 133 inventory units, interpreted in the context of the target variable. A lower RMSE would indicate better predictive performance.
 
-5.3 Predictive Modeling
+Model Performance
 
-A Multiple Linear Regression model was implemented in R to predict inventory values based on available dataset features.
+The regression model demonstrates weak predictive performance. The low R-squared value indicates that the selected input variables are not sufficient to explain inventory variation effectively.
 
-The model was evaluated using:
+Therefore, the model should not be considered highly accurate or reliable for operational inventory forecasting in its current form.
 
-- R-squared (R²): 0.00464
-- Root Mean Squared Error (RMSE): 133.1772
+Limitations
 
-5.4 Model Interpretation
+- The selected variables may not adequately explain inventory fluctuations.
+- Additional relevant features may be required.
+- Model performance may improve through feature engineering and model comparison.
+- Further validation is required before using predictions for business decisions.
 
-The obtained R-squared value indicates that the model explains only a very small proportion of the variation in inventory values. Therefore, the current model has limited predictive performance.
+Conclusion
 
-The RMSE value indicates the average magnitude of prediction errors in the inventory target's units.
-
-The model results suggest that additional relevant variables, feature engineering, and model improvement may be required to achieve better prediction accuracy.
-
-5.5 Prediction Output
-
-The predicted inventory values were added to the dataset and exported into a CSV file named:
-
-"predicted_inventory_results.csv"
-
-This output can be used for further analysis and dashboard integration.
+The R analysis successfully demonstrates the application of regression modeling and model evaluation techniques. However, the results indicate limited predictive capability. The analysis provides a foundation for further improvement through additional data and better feature selection.
 
 6. Dashboard Preview
 
