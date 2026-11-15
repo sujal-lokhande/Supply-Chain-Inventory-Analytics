@@ -53,21 +53,83 @@ Raw Data → PostgreSQL → SQL Data Cleaning & Analysis → R EDA & Predictive 
 
 4. Key SQL Code Highlights
 
-PostgreSQL was used to prepare and analyze the supply chain analytical dataset.
+SQL was used to perform analytical queries on the "supply_chain_abt" dataset to identify regional inventory patterns, stockout risks, and inventory turnover performance.
 
-4.1 Common Table Expressions (CTEs)
+Query 1: Regional Inventory Analysis Using CTE and Window Function
 
-CTEs were used to organize complex SQL queries into readable and manageable steps. They help simplify data preparation and analytical processing.
+WITH regional_inventory AS (
+    SELECT
+        region,
+        SUM(inventory_level) AS total_inventory,
+        SUM(units_sold) AS total_units_sold
+    FROM supply_chain_abt
+    GROUP BY region
+)
+SELECT
+    region,
+    total_inventory,
+    total_units_sold,
+    RANK() OVER (
+        ORDER BY total_inventory DESC
+    ) AS inventory_rank
+FROM regional_inventory
+ORDER BY inventory_rank;
 
-4.2 Joins and Data Transformation
+Explanation:
 
-Joins were used to combine relevant supply chain and inventory information into an Analytical Base Table (ABT). Data cleaning and transformations helped prepare the dataset for further analysis.
+- A Common Table Expression (CTE) calculates inventory and sales for each region.
+- The "RANK()" window function ranks regions according to their total inventory.
+- This query helps identify regions with high inventory levels.
 
-4.3 Window Functions
+Query 2: Supplier Lead Time Analysis Using CTE
 
-Window functions such as ranking and partition-based analysis were used to compare records and analyze performance across different categories.
+WITH supplier_analysis AS (
+    SELECT
+        supplier_id,
+        AVG(avg_lead_time_days) AS avg_lead_time
+    FROM supply_chain_abt
+    GROUP BY supplier_id
+)
+SELECT
+    supplier_id,
+    avg_lead_time,
+    CASE
+        WHEN avg_lead_time > 30 THEN 'High Lead Time'
+        WHEN avg_lead_time > 15 THEN 'Medium Lead Time'
+        ELSE 'Low Lead Time'
+    END AS lead_time_category
+FROM supplier_analysis
+ORDER BY avg_lead_time DESC;
 
-These SQL techniques support structured data preparation and help generate analysis-ready data for R and Power BI.
+Explanation:
+
+- The CTE calculates the average lead time for each supplier.
+- The "CASE" statement categorizes suppliers based on lead time.
+- This analysis can help identify suppliers requiring further evaluation.
+
+Query 3: Inventory Turnover Analysis
+
+SELECT
+    sku_id,
+    SUM(units_sold) AS total_units_sold,
+    AVG(sku_average_inventory) AS avg_inventory,
+    SUM(units_sold) /
+        NULLIF(AVG(sku_average_inventory), 0)
+        AS inventory_turnover
+FROM supply_chain_abt
+GROUP BY sku_id
+ORDER BY inventory_turnover DESC;
+
+Explanation:
+
+- This query calculates inventory turnover for each SKU.
+- "NULLIF()" prevents division by zero.
+- Higher turnover indicates that inventory is moving relatively faster.
+- The results help compare inventory movement across products.
+
+Business Relevance:
+
+These SQL analytical queries support regional inventory evaluation, supplier lead time monitoring, and SKU-level inventory performance analysis. The findings can help management make better inventory planning and supply chain decisions.
 
 5. R Modeling Insights & Validation
 
