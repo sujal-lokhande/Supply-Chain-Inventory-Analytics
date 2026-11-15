@@ -121,6 +121,22 @@ The R scripts include:
 
 The model outputs are intended to support inventory analysis and operational decision-making.
 
+### Predictive Model Evaluation
+
+A Linear Regression model was developed to predict inventory levels.
+
+Model Evaluation Metrics:
+
+- R-Squared (R²): 0.004640724
+- Root Mean Square Error (RMSE): 133.1772
+
+Model Interpretation:
+
+The R-Squared value indicates that the model explains a very small proportion of the variation in inventory levels. The RMSE value of 133.1772 represents the average magnitude of prediction errors. The model shows limited predictive performance and may require additional relevant features and improvements for better accuracy.
+
+Validation:
+The model was evaluated using R-Squared and RMSE metrics. Predicted inventory values were generated and exported to "predicted_inventory_results.csv" for further analysis.
+
 ## 6. Dashboard Preview
 
 The Power BI dashboard contains three pages presenting supply chain and inventory analytics.
