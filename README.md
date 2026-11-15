@@ -129,6 +129,17 @@ Dashboard Pages
 2. Warehouse & Supplier Analysis
 3. Regional & Cost Analysis
 
+### Dashboard Page 1: Supply Chain Inventory Analytics
+
+![Dashboard Page 1](assets/dashboard_previews/Screenshot%202026-11-15%20160809.png)
+
+### Dashboard Page 2: Warehouse & Supplier Analysis
+
+![Dashboard Page 2](assets/dashboard_previews/Screenshot%202026-11-15%20160859.png)
+
+### Dashboard Page 3: Regional & Cost Analysis
+
+![Dashboard Page 3](assets/dashboard_previews/Screenshot%202026-11-15%20160927.png)
 Dashboard Features
 
 - KPI cards for total profit, sales, order quantity, cost, and inventory.
