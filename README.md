@@ -53,19 +53,24 @@ Raw Data → PostgreSQL → SQL Data Cleaning & Analysis → R EDA & Predictive 
 
  4. Key SQL Code Highlights
 
-4.1. #Region-wise Inventory Ranking using CTE and Window Function--
-A Common Table Expression (CTE) was used to calculate total inventory for each region. The RANK() window function ranked regions based on inventory levels, helping identify regions with higher inventory concentration.
+4.1. Region-wise Inventory Ranking using CTE and Window Function
 
-4.2. #Supplier Lead Time Ranking using Window Functio--
-The AVG() function calculated the average lead time for each supplier. The RANK() window function ranked suppliers in ascending order of average lead time, helping identify suppliers with better delivery performance.
+A Common Table Expression (CTE) was used to calculate total inventory for each region. The "RANK()" window function ranked regions based on inventory levels, helping identify regions with higher inventory concentration.
 
- 4.3. #Inventory Turnover Analysis--
+4.2. Supplier Lead Time Ranking using Window Function
+
+The "AVG()" function calculated the average lead time for each supplier. The "RANK()" window function ranked suppliers in ascending order of average lead time, helping identify suppliers with better delivery performance.
+
+4.3. Inventory Turnover Analysis
+
 Inventory turnover was calculated using total units sold divided by average inventory. This analysis helps evaluate inventory movement and operational efficiency.
 
- 4.4. #Stockout Analysis--
+4.4. Stockout Analysis
+
 Stockout flags were aggregated region-wise to identify areas with higher stockout frequency and potential supply chain risks.
 
- 4.5. #Inventory Value Analysis--
+4.5. Inventory Value Analysis
+
 Inventory value was calculated using inventory level multiplied by unit cost and aggregated warehouse-wise to identify inventory investment concentration.
 
 5. R Modeling Insights & Validation
