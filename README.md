@@ -51,85 +51,22 @@ Data Flow
 
 Raw Data → PostgreSQL → SQL Data Cleaning & Analysis → R EDA & Predictive Modeling → Prediction Output → Power BI Dashboard → Business Insights
 
-4. Key SQL Code Highlights
+## 4. Key SQL Code Highlights
 
-SQL was used to perform analytical queries on the "supply_chain_abt" dataset to identify regional inventory patterns, stockout risks, and inventory turnover performance.
+### 1. Region-wise Inventory Ranking using CTE and Window Function
+A Common Table Expression (CTE) was used to calculate total inventory for each region. The RANK() window function ranked regions based on inventory levels, helping identify regions with higher inventory concentration.
 
-Query 1: Regional Inventory Analysis Using CTE and Window Function
+### 2. Supplier Lead Time Ranking using Window Function
+The AVG() function calculated the average lead time for each supplier. The RANK() window function ranked suppliers in ascending order of average lead time, helping identify suppliers with better delivery performance.
 
-WITH regional_inventory AS (
-    SELECT
-        region,
-        SUM(inventory_level) AS total_inventory,
-        SUM(units_sold) AS total_units_sold
-    FROM supply_chain_abt
-    GROUP BY region
-)
-SELECT
-    region,
-    total_inventory,
-    total_units_sold,
-    RANK() OVER (
-        ORDER BY total_inventory DESC
-    ) AS inventory_rank
-FROM regional_inventory
-ORDER BY inventory_rank;
+### 3. Inventory Turnover Analysis
+Inventory turnover was calculated using total units sold divided by average inventory. This analysis helps evaluate inventory movement and operational efficiency.
 
-Explanation:
+### 4. Stockout Analysis
+Stockout flags were aggregated region-wise to identify areas with higher stockout frequency and potential supply chain risks.
 
-- A Common Table Expression (CTE) calculates inventory and sales for each region.
-- The "RANK()" window function ranks regions according to their total inventory.
-- This query helps identify regions with high inventory levels.
-
-Query 2: Supplier Lead Time Analysis Using CTE
-
-WITH supplier_analysis AS (
-    SELECT
-        supplier_id,
-        AVG(avg_lead_time_days) AS avg_lead_time
-    FROM supply_chain_abt
-    GROUP BY supplier_id
-)
-SELECT
-    supplier_id,
-    avg_lead_time,
-    CASE
-        WHEN avg_lead_time > 30 THEN 'High Lead Time'
-        WHEN avg_lead_time > 15 THEN 'Medium Lead Time'
-        ELSE 'Low Lead Time'
-    END AS lead_time_category
-FROM supplier_analysis
-ORDER BY avg_lead_time DESC;
-
-Explanation:
-
-- The CTE calculates the average lead time for each supplier.
-- The "CASE" statement categorizes suppliers based on lead time.
-- This analysis can help identify suppliers requiring further evaluation.
-
-Query 3: Inventory Turnover Analysis
-
-SELECT
-    sku_id,
-    SUM(units_sold) AS total_units_sold,
-    AVG(sku_average_inventory) AS avg_inventory,
-    SUM(units_sold) /
-        NULLIF(AVG(sku_average_inventory), 0)
-        AS inventory_turnover
-FROM supply_chain_abt
-GROUP BY sku_id
-ORDER BY inventory_turnover DESC;
-
-Explanation:
-
-- This query calculates inventory turnover for each SKU.
-- "NULLIF()" prevents division by zero.
-- Higher turnover indicates that inventory is moving relatively faster.
-- The results help compare inventory movement across products.
-
-Business Relevance:
-
-These SQL analytical queries support regional inventory evaluation, supplier lead time monitoring, and SKU-level inventory performance analysis. The findings can help management make better inventory planning and supply chain decisions.
+### 5. Inventory Value Analysis
+Inventory value was calculated using inventory level multiplied by unit cost and aggregated warehouse-wise to identify inventory investment concentration.
 
 5. R Modeling Insights & Validation
 
