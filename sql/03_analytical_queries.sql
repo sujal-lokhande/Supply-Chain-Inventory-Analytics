@@ -48,3 +48,18 @@ SELECT
 FROM supply_chain_abt
 GROUP BY warehouse_id
 ORDER BY inventory_value DESC;
+
+6. CTE: Region-wise inventory ranking
+
+WITH region_inventory AS (
+    SELECT
+        region,
+        SUM(inventory_level) AS total_inventory
+    FROM supply_chain_abt
+    GROUP BY region
+)
+SELECT
+    region,
+    total_inventory,
+    RANK() OVER (ORDER BY total_inventory DESC) AS inventory_rank
+FROM region_inventory;
