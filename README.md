@@ -66,3 +66,80 @@ Repository Structure
 Conclusion
 
 This project demonstrates the application of SQL, R, and Power BI in supply chain and inventory analytics to support data-driven business decision-making.
+
+## 1. Project Title & Executive Summary
+
+### Supply Chain & Inventory Analytics
+
+This project focuses on analyzing supply chain and inventory data to identify operational trends, inventory performance, supplier insights, and cost-related patterns.
+
+The main objective is to use SQL, R, and Power BI to support data-driven decision-making and improve supply chain performance.
+
+## 2. Tech Stack
+
+- SQL: PostgreSQL for data management, data cleaning, joins, and analytical queries.
+- R: Exploratory Data Analysis, data visualization, and predictive modeling.
+- Power BI: Interactive dashboard development and KPI visualization.
+
+## 3. Data Pipeline & Architecture
+
+The project follows an end-to-end analytical process:
+
+1. Raw supply chain and inventory data is collected.
+2. Data is cleaned and transformed using SQL.
+3. Analytical queries are performed to identify trends and patterns.
+4. R is used for exploratory data analysis and predictive modeling.
+5. Power BI is used to create an interactive dashboard.
+6. Insights are used to support managerial decisions.
+
+Data Flow:
+
+Raw Data → PostgreSQL → SQL Analysis → R Analysis & Modeling → Power BI Dashboard → Business Insights
+
+## 4. Key SQL Code Highlights
+
+The project uses PostgreSQL queries for:
+
+- Data cleaning and validation.
+- Common Table Expressions (CTEs).
+- Multi-table joins.
+- Window functions.
+- Inventory and supply chain performance analysis.
+
+These queries help identify inventory trends, operational performance, and cost-related patterns.
+
+## 5. R Modeling Insights & Validation
+
+R is used for exploratory data analysis, data preprocessing, visualization, and predictive modeling.
+
+The R scripts include:
+
+- Summary statistics and data visualization.
+- Data preprocessing.
+- Predictive model execution.
+- Model diagnostics and evaluation.
+
+The model outputs are intended to support inventory analysis and operational decision-making.
+
+## 6. Dashboard Preview
+
+The Power BI dashboard contains three pages presenting supply chain and inventory analytics.
+
+Dashboard features include:
+
+- KPI cards for total profit, sales, order quantity, cost, and inventory.
+- Regional inventory distribution.
+- Demand forecast trends.
+- SKU-wise inventory analysis.
+- Monthly inventory overview.
+- Interactive filters and slicers.
+
+The Power BI dashboard file is available in the bi_dashboard folder.
+
+## 7. Business Insights & Strategic Recommendations
+
+1. Monitor inventory levels regularly to avoid overstocking and stock shortages.
+2. Use demand forecasting to improve inventory planning.
+3. Identify high-performing and low-performing SKUs for better decision-making.
+4. Analyze regional inventory distribution to improve resource allocation.
+5. Use supply chain performance indicators to support operational efficiency.
