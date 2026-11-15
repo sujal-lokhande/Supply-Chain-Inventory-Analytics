@@ -50,7 +50,6 @@ GROUP BY warehouse_id
 ORDER BY inventory_value DESC;
 
 6. CTE: Region-wise inventory ranking
-
 WITH region_inventory AS (
     SELECT
         region,
@@ -63,3 +62,13 @@ SELECT
     total_inventory,
     RANK() OVER (ORDER BY total_inventory DESC) AS inventory_rank
 FROM region_inventory;
+
+ 7. Supplier lead time ranking using Window Function
+SELECT
+    supplier_id,
+    AVG(supplier_lead_time_days) AS avg_lead_time,
+    RANK() OVER (
+        ORDER BY AVG(supplier_lead_time_days) ASC
+    ) AS supplier_rank
+FROM supply_chain_abt
+GROUP BY supplier_id;
